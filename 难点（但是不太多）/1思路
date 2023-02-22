@@ -1,0 +1,42 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    int T;
+    cin >> T;
+    while (T--) {
+        int n;
+        cin >> n;
+        int matrix[10][10];
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                cin >> matrix[i][j];
+            }
+        }
+        bool is_upper_triangular = true;
+        for (int i = 1; i < n; i++) {
+            for (int j = 0; j < i; j++) {
+                if (matrix[i][j] != 0) {
+                    is_upper_triangular = false;
+                    break;
+                }
+            }
+            if (!is_upper_triangular) {
+                break;
+            }
+        }
+        if (is_upper_triangular) {
+            cout << "YES" << endl;
+        } else {
+            cout << "NO" << endl;
+        }
+    }
+    return 0;
+}
+首先从标准输入读入一个正整数T，表示测试用例的个数。while (T--) { ... } 表示循环处理每一个测试用例。
+
+接着从标准输入读入矩阵的大小n，再根据矩阵大小n，从标准输入读入矩阵的元素。
+
+用双重循环遍历矩阵的每一个元素，如果该元素的行下标i小于列下标j，即位于主对角线以下的元素，就判断该元素是否为0。如果不是0，则该矩阵不是上三角矩阵，将布尔型变量is_upper_triangular设为false，并跳出循环。
+
+最后根据is_upper_triangular变量的值，输出YES或NO表示该矩阵是否为上三角矩阵。
